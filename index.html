@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Voice Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .container {
+      background: rgba(20, 20, 20, 0.8);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      animation: fadeIn 1s ease-in-out;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 20px;
+      font-size: 2.5rem;
+      color: #00f7ff;
+      text-shadow: 0 0 15px #00f7ff;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      border-radius: 12px;
+      border: none;
+      padding: 15px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      resize: none;
+      outline: none;
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.3);
+    }
+    label {
+      font-weight: bold;
+      margin-right: 10px;
+      font-size: 1.1rem;
+    }
+    select, input[type=range], input[type=text] {
+      padding: 10px 20px;
+      border-radius: 12px;
+      border: none;
+      font-size: 16px;
+      outline: none;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.05);
+      color: #00f7ff;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+      transition: 0.3s;
+      margin: 10px 0;
+      width: 100%;
+    }
+    select:hover, input[type=text]:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+    button {
+      background: linear-gradient(90deg, #00f7ff, #ff00c8);
+      border: none;
+      padding: 14px 35px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      box-shadow: 0 0 20px rgba(255, 0, 200, 0.6);
+      width: 100%;
+    }
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 35px rgba(0, 255, 255, 0.8);
+    }
+    footer {
+      margin-top: 25px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+      font-family: 'Orbitron', sans-serif;
+      color: #ff00c8;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.6;
+      animation: float 8s infinite alternate ease-in-out;
+    }
+    .orb1 {
+      width: 200px; height: 200px;
+      background: #00f7ff;
+      top: 10%; left: 15%;
+    }
+    .orb2 {
+      width: 250px; height: 250px;
+      background: #ff00c8;
+      bottom: 15%; right: 10%;
+    }
+    @keyframes float {
+      from { transform: translateY(0px); }
+      to { transform: translateY(-40px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+
+  <div class="container">
+    <h1>🎤 AI Voice Generator</h1>
+
+    <!-- ✅ Updated form for Flask backend -->
+    <form action="/speak" method="post">
+      <textarea name="text" placeholder="Type your message..."></textarea><br>
+
+      <label for="voice">Choose Voice:</label>
+      <select name="voice" id="voice">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select><br>
+
+      <label for="rate">Speaking Rate:</label>
+      <input type="range" name="rate" min="100" max="300" value="200" step="10" 
+             oninput="this.nextElementSibling.value=this.value">
+      <output style="color:#00f7ff; font-weight:bold;">200</output><br>
+
+      <label for="location">Location:</label>
+      <input type="text" name="location" id="location" placeholder="Enter your city or country">
+
+      <button type="submit">Generate Voice 🔊</button>
+    </form>
+
+    <footer>✨ Futuristic Voice Powered by Python Flask ✨</footer>
+  </div>
+</body>
+</html>
